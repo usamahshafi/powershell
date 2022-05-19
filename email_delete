@@ -1,0 +1,29 @@
+Connect-IPPSSession -UserPrincipalName shafi.adam@Millennium-space.com -ConnectionUri https://ps.compliance.protection.office365.us/powershell-liveid/
+
+
+
+$credential=get-credential
+
+$Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.compliance.protection.outlook.com/powershell-liveid/ -Credential $UserCredential -Authentication Basic -AllowRedirection
+Import-PSSession $Session -DisableNameChecking
+
+#Once Done RUN THIS
+Remove-PSSession $Session
+
+# Emails Spillage cleanup
+New-ComplianceSearch 'Spillage' -ExchangeLocation 'All' -ContentMatchQuery '(from:first.last@millennium-space.com)(subject:"TEST")'
+start-compliancesearch -Identity 'Spillage'
+get-compliancesearch -Identity 'Spillage'
+get-compliancesearch -Identity 'Spillage' | Format-List -Property Items
+
+# Preview the results
+New-ComplianceSearchAction -SearchName 'Spillage' -Preview
+
+Get-ComplianceSearchAction -Identity 'Spillage_Preview' | Format-List -Property Results
+
+# Purge the emails
+New-ComplianceSearchAction -SearchName 'Spillage' -Purge -PurgeType HardDelete / SoftDelete
+
+Get-ComplianceSearchAction -Identity 'Spillage_Purge'
+
+Get-ComplianceSearchAction -Identity 'Spillage_Purge' | Format-List -Property Results
