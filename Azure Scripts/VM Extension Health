@@ -1,1 +1,37 @@
+$subscriptions = Get-AzSubscription
 
+foreach ($sub in $subscriptions) {
+    $id = $sub.Id
+    Set-AzContext -Subscription $id | Out-Null
+    $vmList = Get-AzVM
+
+    foreach ($vm in $vmList) {
+        $vmName = $vm.Name
+        $vmResourceGroupName = $vm.ResourceGroupName
+
+        $virtualMachine = Get-AzVM -ResourceGroupName $vmResourceGroupName -Name $vmName
+
+        $extensions = $virtualMachine.Extensions
+
+        Write-Host "VM: $vmName "
+
+        if ($extensions) {
+            foreach ($extension in $extensions) {
+                $extensionName = $extension.Name
+                $extensionStatus = $extension.ProvisioningState
+                if ($extensionStatus -eq "Succeeded") {
+                    Write-Host "Extension: $extensionName" -ForegroundColor Green
+                    Write-Host "Provisioning State: $extensionStatus" 
+                }
+                else {
+                    Write-Host "Extension: $extensionName" -ForegroundColor Red
+                    Write-Host "Provisioning State: $extensionStatus"
+                }
+            }
+
+        }
+        else {
+            Write-Host "Extension not found" -ForegroundColor Yellow
+        }
+    }
+}
