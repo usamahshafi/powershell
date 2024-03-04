@@ -1,0 +1,106 @@
+# Check if Azure is logged in
+$azLogin = az account show -o none -o json | ConvertFrom-Json -ErrorAction SilentlyContinue
+
+# If Azure is not logged in, then log in
+if (-not $azLogin) {
+    Write-Output "Logging in to Azure CLI..."
+    az login
+} else {
+    Write-Output "Azure CLI is already logged in."
+}
+
+# Initialize an array to store NSG data
+$nsgData = @()
+
+# Retrieve all resource groups
+Write-Output "Retrieving resource groups..."
+$resourceGroups = az group list --query "[].name" --output tsv
+
+# Iterate over each resource group
+foreach ($rg in $resourceGroups) {
+    Write-Output "Processing resource group: $rg"
+    
+    # Retrieve all NSGs in the resource group
+    Write-Output "Retrieving NSGs in resource group: $rg"
+    $nsgs = az network nsg list --resource-group $rg --query "[].name" --output tsv
+    
+    # Iterate over each NSG
+    foreach ($nsg in $nsgs) {
+        Write-Output "Retrieving NSG rules for NSG: $nsg"
+        
+        # Retrieve all rules for the NSG
+        $rules = az network nsg rule list --resource-group $rg --nsg-name $nsg --output json | ConvertFrom-Json
+        Write-Output "Retrieved rules: $rules"
+
+        # Check if rules were retrieved
+        if ($rules) {
+            # Iterate over each rule
+            foreach ($rule in $rules) {
+
+                # Add NSG rule data to the array
+                $nsgData += [PSCustomObject]@{
+                    ResourceGroup = $rg
+                    NSGName = $nsg
+                    RuleName = $rule.name
+                    Protocol = $rule.protocol
+                    SourceAddressPrefixes = $($rule.sourceAddressPrefixes)                    
+		    SourceAddressPrefix = $($rule.sourceAddressPrefix)
+                    DestinationAddressPrefix = $rule.destinationAddressPrefix
+                    Access = $rule.access
+                    DestinationPortRange = $rule.destinationPortRange
+                    Priority = $rule.priority
+                }
+            }
+        } else {
+            Write-Output "No rules found for NSG: $nsg"
+        }
+    }
+}
+
+# Iterate over each row in the NSG data
+Write-Output "Processing NSG rules..."
+foreach ($row in $nsgData) {
+    # Write-Output "Processing NSG source prefixes: $($row.SourceAddressPrefixes)"
+    
+    # Write-Output "Processing NSG rule: $($row)"
+
+    # Check if specific IP needs to be replaced
+    $replaceIP = "10.0.0.0/12"
+    $replacementIP = "10.0.2.0/24"
+    $ipReplaced = $false
+
+	
+    # Check if SourceAddressPrefix is empty
+    if (-not [string]::IsNullOrWhiteSpace($row.SourceAddressPrefix)) {
+        $sourcePrefix = $row.SourceAddressPrefix
+    } else {
+        $sourcePrefix = $row.SourceAddressPrefixes
+    }
+
+    if ($sourcePrefix -like "*$replaceIP*") {
+	Write-Output "Replacing Value of NSG rule: $($row.RuleName)"
+	$sourcePrefix = $sourcePrefix -replace $replaceIP, $replacementIP
+
+	$ipReplaced = $true
+    }
+
+    # Check if the IP was replaced
+    if ($ipReplaced) {
+        # Create NSG rule
+	$sourceAddressPrefixes = $row.SourceAddressPrefixes -split " "
+        az network nsg rule create `
+            --name "$($row.RuleName)_new" `
+            --nsg-name "$($row.NSGName)" `
+            --resource-group "$($row.ResourceGroup)" `
+            --priority "$([int]$row.priority + 1)" `
+            --protocol "$($row.Protocol)" `
+            --source-address-prefixes $sourcePrefix `
+            --destination-address-prefix "$($row.DestinationAddressPrefix)" `
+            --access "$($row.Access)" `
+            --destination-port-range "$($row.DestinationPortRange)"
+        
+        Write-Output "NSG rule $($row.RuleName) created."
+    }
+}
+
+Write-Output "NSG rules creation completed."
