@@ -41,7 +41,6 @@ foreach ($branch in $branches.value) {
 
         if ($branchCommits.value.Count -gt 0) {
             $latestCommit = $branchCommits.value[0]
-
             $latestCommitDate = [DateTime]::Parse($latestCommit.committer.date)
 
             Write-Output "Repo Name: $repoName"
@@ -58,9 +57,10 @@ foreach ($branch in $branches.value) {
                 $UriOrganization = "https://dev.azure.com/$orgName/"
                 $urlDeleteBranch = "$($UriOrganization)$($projectName)/_apis/git/repositories/$repoId/refs?api-version=7.1-preview.1"
 
-                # Ensure that the branch reference includes its full path (folder + branch name)
+                # Ensure the branch name includes the full path (folder + branch name)
                 $fullBranchName = "refs/heads/$branchName"
 
+                # Prepare the request body to delete the branch
                 $body = ConvertTo-Json (
                                                         @(
                                                             @{
@@ -71,8 +71,10 @@ foreach ($branch in $branches.value) {
                                                         )
                                                     )
 
+                # Send the delete request
                 $DeleteBranchResult = Invoke-RestMethod -Uri $urlDeleteBranch -Method Post -Headers $AzureDevOpsAuthenicationHeader -Body $body -ContentType "application/json"
 
+                # Check if deletion was successful
                 if ($DeleteBranchResult) {
                     Write-Output "Branch '$branchName' deleted successfully."
                     $deletedBranches += "$repoName - $branchName"
