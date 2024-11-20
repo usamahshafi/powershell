@@ -1,7 +1,7 @@
 $orgName = "humana"
 $projectName = "DevOps"
-$repoName = "ado_wrapper"
-$pat = "3lDZTzaOVNq1v6INrtA2MmzeEl8pSKFW8XAmNnpjH0FE4cbmDglPJQQJ99AKACAAAAAd7FPDAAASAZDOTZhV"
+$repoName = "***"
+$pat = "***"
 $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$pat"))
 
 $excludedBranches = @("main", "prod", "master", "stg", "dev", "prd")
@@ -9,8 +9,6 @@ $excludedBranches = @("main", "prod", "master", "stg", "dev", "prd")
 $cutoffDate = [DateTime]::Parse("2024-08-31T00:00:00")
 
 $deletedBranches = @()
-
-
 
 Write-Output "Processing Repo: $repoName"
 
@@ -60,10 +58,13 @@ foreach ($branch in $branches.value) {
                 $UriOrganization = "https://dev.azure.com/$orgName/"
                 $urlDeleteBranch = "$($UriOrganization)$($projectName)/_apis/git/repositories/$repoId/refs?api-version=7.1-preview.1"
 
+                # Ensure that the branch reference includes its full path (folder + branch name)
+                $fullBranchName = "refs/heads/$branchName"
+
                 $body = ConvertTo-Json (
                                                         @(
                                                             @{
-                                                                name        = "refs/heads/$branchName";
+                                                                name        = $fullBranchName;
                                                                 oldObjectId = $branch.objectId;
                                                                 newObjectId = "0000000000000000000000000000000000000000";
                                                             }
@@ -85,11 +86,4 @@ foreach ($branch in $branches.value) {
     } catch {
         Write-Host "Error fetching commits for branch '$branchName' in repository '$repoName': $_" -ForegroundColor Red
     }
-}
-
-if ($deletedBranches.Count -gt 0) {
-    Write-Output "Deleted branches:"
-    $deletedBranches | ForEach-Object { Write-Output $_ }
-} else {
-    Write-Output "No branches were deleted."
 }
