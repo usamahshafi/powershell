@@ -1,19 +1,46 @@
-Processing Repo: ado_wrapper
-Repo Name: ado_wrapper
-Branch Name: gcp_ima_common_googleapi
-Date: 07/14/2020 15:13:47
-Commit Message: Merged PR 150573: Asset Associations
-Commit ID: d54921e960133f8628f63c616850089266c78c94
+Repo Name: Cicd.Azdo.PipelineTemplates.Docs
+Branch Name: Micaela/DotNetProjectTypeDocs
+Date: 09/19/2024 15:43:29
+Commit Message: adding DotNet_ProjectType input docs
+Commit ID: 5c8c1f0385c4d5474905430930eb17519ed49a8e 
+---------------------------------------------       
+Repo Name: Cicd.Azdo.PipelineTemplates.Docs
+Branch Name: datapower
+Date: 11/12/2024 14:07:05
+Commit Message: Added DataPowertoDPServer.md       
+Commit ID: 5c933e6c74d3384250a581765a9ebd94827ef89f
+---------------------------------------------      
+Repo Name: Cicd.Azdo.PipelineTemplates.Docs
+Branch Name: feature-vt/weblogicprojecttypedoc
+Date: 11/20/2024 17:58:45
+Commit Message: Moved variable to the Public section.
+Commit ID: e7afc5dbccb91815e922ca3cd4227841ef202bde
 ---------------------------------------------
-The latest commit is before 08/31/2024 00:00:00, attempting to delete branch gcp_ima_common_googleapi...
-Error fetching commits for branch 'gcp_ima_common_googleapi' in repository 'ado_wrapper': 
-{
-  "$id": "1",
-  "innerException": null,
-  "message": "A project name is required in order to reference a Git repository by name.",
-  "typeName": "System.ArgumentException, mscorlib",
-  "typeKey": "ArgumentException",
-  "errorCode": 0,
-  "eventId": 0
-}
-No branches were deleted.
+Repo Name: Cicd.Azdo.PipelineTemplates.Docs
+Branch Name: feature/6553954
+Date: 08/29/2024 20:20:55
+Commit Message: Updated JavaGradleLibraryToArtifactory.md
+Commit ID: 543189634c0508f9302a7b2eefc8c0ad09938c56
+---------------------------------------------
+The latest commit is before 08/31/2024 00:00:00, attempting to delete branch feature/6553954...
+Branch 'feature/6553954' deleted successfully.
+Repo Name: Cicd.Azdo.PipelineTemplates.Docs
+Branch Name: feature/6611239-dnc-console-deploy
+Date: 09/16/2024 19:58:24
+Commit Message: Merge branch 'main' of https://dev.azure.com/humana/DevOps/_git/Cicd.Azdo.PipelineTemplates.Docs into feature/6611239-dnc-console-deploy
+Commit ID: cea3f94ee264e52d3fafec4dd99f83b3b733f99b
+---------------------------------------------
+Repo Name: Cicd.Azdo.PipelineTemplates.Docs
+Branch Name: mule
+Date: 11/15/2024 19:53:44
+Commit Message: Updated CStoRPAServer.md
+Commit ID: 0aac72e6ddf9b01e8bc8b680d2b42911189c68ac
+---------------------------------------------
+Repo Name: Cicd.Azdo.PipelineTemplates.Docs
+Branch Name: pragati/documentationForDotnetcoreWindowsService
+Date: 11/20/2024 17:54:31
+Commit Message: adding pre-requisites
+Commit ID: 504d818b9f496a776ffdedaf15387ca908b663a9
+---------------------------------------------
+Deleted branches:
+Cicd.Azdo.PipelineTemplates.Docs - feature/6553954
