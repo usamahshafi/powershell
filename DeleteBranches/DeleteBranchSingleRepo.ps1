@@ -1,7 +1,7 @@
 $orgName = "humana"
 $projectName = "DevOps"
 $repoName = "ado_wrapper"
-$pat = "3lDZTzaOVNq1v6INrtA2MmzeEl8pSKFW8XAmNnpjH0FE4cbmDglPJQQJ99AKACAAAAAd7FPDAAASAZDOTZhV"
+$pat = ***
 $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$pat"))
 
 $excludedBranches = @("main", "prod", "master", "stg", "dev", "prd")
