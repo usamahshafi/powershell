@@ -1,3 +1,4 @@
+Processing Repo: Cicd.Azdo.PipelineTemplates.Docs
 Repo Name: Cicd.Azdo.PipelineTemplates.Docs
 Branch Name: Micaela/DotNetProjectTypeDocs
 Date: 09/19/2024 15:43:29
@@ -11,11 +12,11 @@ Commit Message: Added DataPowertoDPServer.md
 Commit ID: 5c933e6c74d3384250a581765a9ebd94827ef89f
 ---------------------------------------------      
 Repo Name: Cicd.Azdo.PipelineTemplates.Docs
-Branch Name: feature-vt/weblogicprojecttypedoc
+Branch Name: feature-vt/weblogicprojecttypedoc       
 Date: 11/20/2024 17:58:45
 Commit Message: Moved variable to the Public section.
-Commit ID: e7afc5dbccb91815e922ca3cd4227841ef202bde
----------------------------------------------
+Commit ID: e7afc5dbccb91815e922ca3cd4227841ef202bde  
+---------------------------------------------        
 Repo Name: Cicd.Azdo.PipelineTemplates.Docs
 Branch Name: feature/6553954
 Date: 08/29/2024 20:20:55
@@ -38,9 +39,7 @@ Commit ID: 0aac72e6ddf9b01e8bc8b680d2b42911189c68ac
 ---------------------------------------------
 Repo Name: Cicd.Azdo.PipelineTemplates.Docs
 Branch Name: pragati/documentationForDotnetcoreWindowsService
-Date: 11/20/2024 17:54:31
-Commit Message: adding pre-requisites
-Commit ID: 504d818b9f496a776ffdedaf15387ca908b663a9
+Date: 11/20/2024 18:08:14
+Commit Message: updated pipeline link
+Commit ID: b4701492ac4e79dedad71e12665041c6ea9ac83b
 ---------------------------------------------
-Deleted branches:
-Cicd.Azdo.PipelineTemplates.Docs - feature/6553954
