@@ -1,35 +1,7 @@
-cfes-cft-management-hub
-fws-cdf-npe-foundation
-fws-cdf-prd-foundation
-fws-cfes-npe-foundation
-fws-cfes-prd-foundation
-fws-cst-npe-foundation
-fws-cst-prd-foundation
-fws-dccc-npe-foundation
-fws-dccc-pci-npe-foundation
-fws-dccc-pci-prd-foundation
-fws-dccc-prd-foundation
-fws-dse-npe-foundation
-fws-dse-prd-foundation
-fws-ea-npe-foundation
-fws-ea-prd-foundation
-fws-eip-npe-foundation
-fws-eip-prd-foundation
-fws-forge-npe-foundation
-fws-forge-prd-foundation
-fws-grp-npe-foundation
-fws-grp-prd-foundation
-fws-hcs-npe-foundation
-fws-hcs-prd-foundation
-fws-hpe-npe-foundation
-fws-hpe-prd-foundation
-fws-idea-bi-npe-foundation
-fws-idea-npe-foundation
-fws-idea-prd-foundation
-fws-management-spoke-npe-foundation-build
-fws-management-spoke-npe-foundation
-fws-medc-npe-foundation
-fws-medc-prd-foundation
-fws-sao-npe-foundation
-fws-sao-prd-foundation
-fws-sqm-npe-foundation
+Invoke-RestMethod: \\LOUISILON02S\USERDAT01\UIS1266\Desktop\DeleteBranches\DeleteListedRepoBranches.ps1:55:14
+Line |
+  55 |  …    $repos = Invoke-RestMethod -Uri $reposUrl -Headers @{Authorization …
+     |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Response status code does not indicate success: 401 (Unauthorized).
+Write-Error: Repository 'fws-sqm-npe-foundation' not found in project 'SCS'.
+No branches were deleted.
