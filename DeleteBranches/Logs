@@ -1,7 +1,9 @@
-Invoke-RestMethod: \\LOUISILON02S\USERDAT01\UIS1266\Desktop\DeleteBranches\DeleteListedRepoBranches.ps1:55:14
-Line |
-  55 |  …    $repos = Invoke-RestMethod -Uri $reposUrl -Headers @{Authorization …
-     |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     | Response status code does not indicate success: 401 (Unauthorized).
-Write-Error: Repository 'fws-sqm-npe-foundation' not found in project 'SCS'.
-No branches were deleted.
+ALM.IntakePage	refs/pull/232626/merge
+ALM.IntakePage	refs/pull/253828/merge
+ALM.IntakePage	refs/pull/274059/merge
+ALM.IntakePage	refs/pull/277623/merge
+ALM.IntakePage	refs/pull/303356/merge
+ALM.IntakePage	refs/pull/325640/merge
+ALM.IntakePage	refs/pull/399559/merge
+ALM.IntakePage	refs/pull/431056/merge
+ALM.IntakePage	refs/pull/439580/merge
