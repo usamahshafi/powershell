@@ -1,12 +1,12 @@
-$organizationUrl = "***"
-$projectName = "***"
+$organizationUrl = "https://dev.azure.com/MyDataOpsWork/"
+$projectName = "DataOps"
 $pat = "***"
-
 $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$($pat)"))
 
 $headers = @{
     Authorization = "Basic $base64AuthInfo"
 }
+
 function Get-Repositories {
     $url = "$organizationUrl/$projectName/_apis/git/repositories?api-version=7.1-preview.1"
     $response = Invoke-RestMethod -Uri $url -Method Get -Headers $headers
@@ -35,11 +35,14 @@ foreach ($repo in $repositories) {
     $branches = Get-Branches -repoId $repoId
     
     foreach ($branch in $branches) {
-        $branchData += [PSCustomObject]@{
-            RepositoryName = $repoName
-            BranchName = $branch.name
+        if ($branch.name -notmatch '^refs/pull/') {
+            $branchData += [PSCustomObject]@{
+                RepositoryName = $repoName
+                BranchName = $branch.name
+            }
         }
     }
 }
+
 $branchData | Export-Csv -Path "AzureDevOpsBranches.csv" -NoTypeInformation
 Write-Host "Branches data saved to 'AzureDevOpsBranches.csv'"
