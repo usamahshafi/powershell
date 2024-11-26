@@ -1,3 +1,4 @@
+# This script deletes the branches dated before 1st Aug 2024 in a single repo except the excluded branches. 
 $orgName = "humana"
 $projectName = "DevOps"
 $repoName = "***"
