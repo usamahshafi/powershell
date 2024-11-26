@@ -1,3 +1,4 @@
+#Creates a CSV file with all the names of the branches inside the repositories.
 $organizationUrl = "https://dev.azure.com/MyDataOpsWork/"
 $projectName = "DataOps"
 $pat = "***"
