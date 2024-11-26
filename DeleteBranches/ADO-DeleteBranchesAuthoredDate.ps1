@@ -1,3 +1,4 @@
+# This script deletes the branches (except the excluded branches) dated before 31st Aug 2024 in all the repos in a Project 
 $orgName = "***"
 $projectName = "***"
 $pat = "***"
