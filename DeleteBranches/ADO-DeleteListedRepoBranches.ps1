@@ -1,3 +1,4 @@
+# This script deletes the branches dated before 1st Aug 2024 in the listed repos except the excluded branches. 
 $orgName = "humana"
 $projectName = "SCS"
 $pat = "3lDZTzaOVNq1v6INrtA2MmzeEl8pSKFW8XAmNnpjH0FE4cbmDglPJQQJ99AKACAAAAAd7FPDAAASAZDOTZhV"
