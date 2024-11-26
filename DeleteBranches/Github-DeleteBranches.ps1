@@ -1,3 +1,4 @@
+# This script deletes the branches dated before 1st Aug 2024 in the listed repos except the excluded branches. 
 $owner = "***"
 $repos = @("repo1", "repo2", "repo3")
 $token = "***"
