@@ -1,0 +1,1 @@
+sftp -v hcbsstoragestg01.test@hcbsstoragestg01.blob.core.usgovcloudapi.net
