@@ -1,1 +1,6 @@
 sftp -v hcbsstoragestg01.test@hcbsstoragestg01.blob.core.usgovcloudapi.net
+Regarding this ticket:
+
+It appears that our internal firewall is blocking communication on port 22, which SFTP uses, preventing any connection.
+
+Please let me know if I should request the individual to contact the appropriate team themselves, or if I should reach out to them directly.
